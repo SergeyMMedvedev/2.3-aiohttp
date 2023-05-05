@@ -1,0 +1,159 @@
+###
+
+POST http://127.0.0.1:8080/users
+Content-Type: application/json
+
+{
+    "email": "Alex@alex1.com", 
+    "password": "1234"
+}
+
+###
+### login
+# @name postLogin
+
+POST http://127.0.0.1:8080/login
+Content-Type: application/json
+
+{
+    "email": "Alex@alex1.com", 
+    "password": "1234"
+}
+
+###
+
+@token = {{postLogin.response.body.token}}
+###
+###
+
+POST http://127.0.0.1:8080/adverts
+Content-Type: application/json
+token: {{token}}
+
+{
+    "title": "sdf2",
+    "description": "dsadfasd"
+}
+
+###
+###
+
+PATCH http://127.0.0.1:8080/adverts/1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "title": "New Title"
+}
+
+###
+###
+
+GET http://127.0.0.1:8080/adverts/1
+Content-Type: application/json
+token: {{token}}
+
+###
+###
+
+DELETE http://127.0.0.1:8080/adverts/1
+Content-Type: application/json
+token: {{token}}
+
+###
+### Invalid fiald
+
+POST http://127.0.0.1:8080/users
+Content-Type: application/json
+
+{
+    "email": "Alex@alex1.com", 
+    "4": "1234"
+}
+
+###
+### Invalid fiald
+
+POST http://127.0.0.1:8080/users
+Content-Type: application/json
+
+{
+    "email": "Alex@alex1.com", 
+    "password": "1234",
+    "asd": "Asda"
+}
+
+###
+###
+
+POST http://127.0.0.1:8080/users
+Content-Type: application/json
+
+{
+    "email": "Alex@alex2.com", 
+    "password": "1234"
+}
+
+###
+
+
+
+GET http://127.0.0.1:8080/users/1
+Content-Type: application/json
+token: {{token}}
+
+###
+###
+
+PATCH http://127.0.0.1:8080/users/1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "email": "Alex@newalex1.com",
+    "gvcfh": "asd"
+}
+
+###
+### Not ownewr
+
+PATCH http://127.0.0.1:8080/users/2
+Content-Type: application/json
+token: {{token}}
+
+{
+    "asd": "Alex@alex.com"
+}
+
+###
+### Invalid field
+
+PATCH http://127.0.0.1:8080/users/1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "asd": "Alex@newalexasdasdsadas.com"
+}
+
+###
+### 
+
+DELETE http://127.0.0.1:8080/users/2
+Content-Type: application/json
+token: {{token}}
+
+
+###
+
+
+### Invalid advert
+
+POST http://127.0.0.1:8080/adverts
+Content-Type: application/json
+token: {{token}}
+
+{
+    "dsfs": "sdf"
+}
+###

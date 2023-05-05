@@ -1,0 +1,63 @@
+[tool.ruff]
+
+select = ["ANN", "E", "F", "I", "D"]
+ignore = [
+    "F403",
+    "F405",
+    "E731",
+    "D100",  # Missing docstring in public module
+    "D101",  # Missing docstring in public class
+    "D105",  # Missing docstring in magic method
+    "D107",  # Missing docstring in `__init__`
+    "D200",  # One-line docstring should fit on one line
+    "D203",  # Ignoring `one-blank-line-before-class`
+    "D212",  # Multi-line docstring summary should start at the first line
+    "D213",  # Ignoring `multi-line-summary-second-line`
+    "ANN001",  # Missing type annotation for function argument `args`
+    "ANN002",  # Missing type annotation for `*args`
+    "ANN003",  # Missing type annotation for `**kwargs`
+    "ANN101",  # Missing type annotation for `self` in method
+    "ANN102",  # Missing type annotation for `cls` in classmethod"
+]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+#fixable = ["A", "B", "C", "D", "E", "F", "..."]
+#unfixable = []
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    ".venv",
+]
+
+extend-exclude = [
+]
+
+# Same as Black.
+line-length = 80
+
+# Assume Python 3.11.
+target-version = "py311"
+
+[tool.ruff.pydocstyle]
+# Use Google-style docstrings.
+convention = "google"
+
+[tool.ruff.pylint]
+max-statements = 50
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+ignore_missing_imports = true
+no_implicit_optional = true
+follow_imports = "skip"
+exclude = [
+    "^file2\\.py$",  # TOML basic string (double-quotes, backslash and other characters need escaping)
+    "^conf*",
+]
